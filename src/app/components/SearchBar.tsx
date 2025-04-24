@@ -39,7 +39,7 @@ export default function SearchBar({ onResult, onError }: SearchBarProps) {
     <form onSubmit={handleSubmit} className="w-full max-w-xl flex flex-col sm:flex-row gap-4">
       <input
         type="text"
-        placeholder="Ej: thrillers psicológicos como Fight Club"
+        placeholder="E.g. psychological thrillers like Fight Club"
         className="flex-1 p-3 border border-gray-300 rounded-md text-black"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
@@ -49,7 +49,7 @@ export default function SearchBar({ onResult, onError }: SearchBarProps) {
         type="submit"
         className="bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition"
       >
-        {loading ? "Buscando..." : "Buscar"}
+        {loading ? "Searching..." : "Find Movies"}
       </button>
     </form>
   );
