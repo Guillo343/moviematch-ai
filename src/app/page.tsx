@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SearchBar from "./components/SearchBar";
+import SearchBar from "../components/SearchBar";
 
 export default function Home() {
   const [result, setResult] = useState<string | null>(null);

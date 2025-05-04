@@ -1,6 +1,6 @@
-import { fetchTrendingMovies } from "../lib/tmdb";
+import { fetchTrendingMovies } from "../../lib/tmdb";
 import Image from "next/image";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 
 export default async function HomePage() {
   const data = await fetchTrendingMovies();
