@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import SearchBar from "../components/SearchBar";
-import Navbar from "@/components/Navbar";
 
 export default function Home() {
   const [result, setResult] = useState<string | null>(null);
@@ -10,7 +9,6 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
       <main className="min-h-screen p-6 sm:p-16 flex flex-col items-center justify-center gap-8 text-center">
         <h1 className="text-3xl sm:text-5xl font-bold">🎬 MovieMatch AI</h1>
         <p className="text-lg sm:text-xl max-w-xl">

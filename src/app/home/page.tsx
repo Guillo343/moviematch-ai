@@ -1,33 +1,39 @@
-import { fetchTrendingMovies } from "../../lib/tmdb";
-import Image from "next/image";
-import Navbar from "../../components/Navbar";
+"use client";
 
-export default async function HomePage() {
-  const data = await fetchTrendingMovies();
-  const movies = data.results;
+import { useEffect, useState } from "react";
+import { fetchTrendingMovies } from "@/lib/tmdb";
+import MovieCard from "@/components/MovieCard";
+
+export default function Home() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    async function loadMovies() {
+      try {
+        const data = await fetchTrendingMovies();
+        setMovies(data.results.slice(0, 12)); // mostramos 12
+      } catch (err) {
+        console.error("Error loading movies", err);
+      }
+    }
+
+    loadMovies();
+  }, []);
 
   return (
-    <>
-      <Navbar />
-      <main className="p-6">
-        <h1 className="text-3xl font-bold mb-6">🎬 Películas en Tendencia</h1>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {movies.map((movie: any) => (
-            <div key={movie.id} className="bg-white rounded-lg shadow">
-              <Image
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-                width={300}
-                height={450}
-                className="rounded-t-lg"
-              />
-              <div className="p-2">
-                <h2 className="text-lg font-semibold">{movie.title}</h2>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
-    </>
+    <main className="p-6 sm:p-12">
+      <h1 className="text-3xl sm:text-4xl font-bold mb-6 text-center">🔥 Películas en Tendencia</h1>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        {movies.map((movie: any) => (
+          <MovieCard
+            key={movie.id}
+            title={movie.title}
+            posterPath={movie.poster_path}
+            releaseDate={movie.release_date}
+          />
+        ))}
+      </div>
+    </main>
   );
 }
