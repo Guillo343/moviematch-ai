@@ -16,3 +16,11 @@ export async function fetchMoviesByGenre(genreId: number) {
   if (!res.ok) throw new Error("Error fetching movies by genre");
   return res.json();
 }
+export async function searchMovies(query: string) {
+  const res = await fetch(
+    `${BASE_URL}/search/movie?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&query=${query}`
+  );
+  if (!res.ok) throw new Error("Error searching movies");
+  return res.json();
+}
+
